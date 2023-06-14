@@ -32,8 +32,9 @@ resource "aws_subnet" "subnet-1" {
   vpc_id = aws_vpc.vpc-obli.id
   cidr_block = var.cidr-subnet-1
   availability_zone = "us-east-1a"
-  tags {
-    Name = subnet-obli-1
+  map_public_ip_on_launch = true
+  tags = {
+    Name = "subnet-obli-1"
   }
 }
 
@@ -41,13 +42,13 @@ resource "aws_subnet" "subnet-2" {
   vpc_id = aws_vpc.vpc-obli.id
   cidr_block = var.cidr-subnet-2
   availability_zone = "us-east-1b"
-  tags {
-    Name = subnet-obli-2
+  tags = {
+    Name = "subnet-obli-2"
   }
 }
 
 resource "aws_route_table" "tabla-obli" {
-  vpc_id = aws.vpc.vpc-obli.id
+  vpc_id = aws_vpc.vpc-obli.id
   route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.igw-obli.id
