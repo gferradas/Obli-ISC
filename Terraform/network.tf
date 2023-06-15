@@ -57,16 +57,33 @@ resource "aws_route_table" "tabla-obli" {
 }
 
 resource "aws_nat_gateway" "nat-obli" {
-  connectivity_type = public
+  connectivity_type = "public"
   subnet_id = aws_subnet.subnet-1.id
+  allocation_id = aws_eip.eip-obli.id
   tags ={
     Name = "Nat-Obli"
   }
   depends_on = [ aws_internet_gateway.igw-obli ]
 }
 
+resource "aws_route_table" "nat-table" {
+  vpc_id = aws_vpc.vpc-obli.id
+  route {
+    cidr_block = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.nat-obli.id
+  }
+}
+
+resource "aws_route_table_association" "nat-associate" {
+  subnet_id = aws_subnet.subnet-2.id
+  route_table_id = aws_route_table.nat-table.id
+}
 
 resource "aws_route_table_association" "asociacion-ruta" {
   subnet_id = aws_subnet.subnet-1.id
   route_table_id = aws_route_table.tabla-obli.id
+}
+
+resource "aws_eip" "eip-obli" {
+  domain = "vpc"
 }

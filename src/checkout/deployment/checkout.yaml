@@ -15,7 +15,7 @@ spec:
       serviceAccountName: default
       containers:
         - name: server
-          image: <IMAGE:TAG>
+          image: gferradas/checkout:v1
           ports:
           - containerPort: 5050
           readinessProbe:
