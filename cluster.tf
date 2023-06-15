@@ -1,6 +1,6 @@
 resource "aws_eks_cluster" "cluster" {
   name = var.cluster_name
-  role_arn = "arn:aws:iam::268653463774:role/LabRole" 
+  role_arn = var.arn_role
 
 
   vpc_config {
@@ -10,8 +10,13 @@ resource "aws_eks_cluster" "cluster" {
 
 resource "aws_eks_node_group" "workers" {
   cluster_name = aws_eks_cluster.cluster.name
-  node_role_arn = "arn:aws:iam::268653463774:role/LabRole"
+  node_role_arn = var.arn_role
   instance_types = [ var.worker-type ]
+  node_group_name = var.workers-name
+  ami_type = var.ami
+  remote_access {
+    ec2_ssh_key = "vockey"
+  }
 
   subnet_ids = [aws_subnet.subnet-1.id,aws_subnet.subnet-2.id]
 

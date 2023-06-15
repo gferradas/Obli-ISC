@@ -11,13 +11,13 @@ resource "aws_security_group" "sg-obli" {
     from_port = var.ssh
     to_port = var.ssh
     protocol = "tcp"
-    cidr_blocks = [ "0.0.0.0/0" ]
+    cidr_blocks = [ var.cidr-global ]
   }
   egress {
     from_port = "0"
     to_port = "0"
     protocol = "-1"
-    cidr_blocks = [ "0.0.0.0/0" ]
+    cidr_blocks = [ var.cidr-global ]
   }
 }
 
@@ -42,6 +42,7 @@ resource "aws_subnet" "subnet-2" {
   vpc_id = aws_vpc.vpc-obli.id
   cidr_block = var.cidr-subnet-2
   availability_zone = "us-east-1b"
+  map_public_ip_on_launch = true
   tags = {
     Name = "subnet-obli-2"
   }
@@ -54,6 +55,16 @@ resource "aws_route_table" "tabla-obli" {
     gateway_id = aws_internet_gateway.igw-obli.id
   }
 }
+
+resource "aws_nat_gateway" "nat-obli" {
+  connectivity_type = public
+  subnet_id = aws_subnet.subnet-1.id
+  tags ={
+    Name = "Nat-Obli"
+  }
+  depends_on = [ aws_internet_gateway.igw-obli ]
+}
+
 
 resource "aws_route_table_association" "asociacion-ruta" {
   subnet_id = aws_subnet.subnet-1.id

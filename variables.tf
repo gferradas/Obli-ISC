@@ -1,4 +1,5 @@
-
+variable "arn_role" {
+}
 
 variable "cluster_name" {
   type = string
@@ -22,4 +23,16 @@ variable "cidr-subnet-1" {
 
 variable "ssh" {
   type = number
+}
+
+variable "ami" {
+  type = string
+}
+
+variable "workers-name" {
+  type = string
+}
+
+variable "cidr-global" {
+  type = string
 }
