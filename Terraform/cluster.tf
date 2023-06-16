@@ -26,5 +26,5 @@ resource "aws_eks_node_group" "workers" {
     min_size = 2
   }
 
-  depends_on = [ aws_eks_cluster.cluster ]
+  depends_on = [ aws_eks_cluster.cluster,aws_nat_gateway.nat-obli,aws_route_table_association.nat-associate]
 } 
