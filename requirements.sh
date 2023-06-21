@@ -11,14 +11,13 @@ else
     aws configure
 fi
 
-echo "#####################################################################################"
+echo " "
 
 echo "Actualice las credenciales de aws"
 
 sleep 1
 #se abri vi para que se modifquen las credenciales de la cli
 vi $HOME/.aws/credentials
-#se exporta el arn del rol LabRole para usarlo como variable de entorno para la variable de terraform
-export TF_VAR_arn_role=$(aws iam get-role --role-name LabRole --query 'Role.Arn' --output text)
+
 #Se busca en la carpeta src y se itera los archivos en busca de los docker file donde se construyen con el tag v2 y pushean hacia dockerhub
 find $HOME/Obli-ISC/src -maxdepth 2 -type d -exec sh -c 'cd "{}" && docker build -t "gferradas/$(basename {}):v2" . && docker push "gferradas/$(basename {}):v2"' \;
