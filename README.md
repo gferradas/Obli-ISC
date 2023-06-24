@@ -84,4 +84,4 @@ en la cual podra interactuar y generar compras de prueba:
 
 ![compra](.img/compra.png)
 
-\_Y listo ya tendrias una aplicacion corriendo con microservicios corriendo en Kubernetes!!!!!!!!!!!!!!\_
+\_ Y listo ya tendrías una aplicación corriendo con microservicios corriendo en Kubernetes!!!!!!!!!!!!!!\_
