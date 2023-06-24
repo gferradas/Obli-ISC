@@ -1,6 +1,10 @@
 # Obligatorio implementacion de soluciones cloud
 
+# Integrantes
 
+Guillermo Ferradas (270809)
+
+Mauricio Campodonico (212382)
 
 
 ## Disclaimer
@@ -8,20 +12,13 @@
 Este proyecto solo funcionara en sistemas operativos linux.
 
 Por lo tanto si es usuario de windows se recomienda el uso de WSL 
-o 
-una maquina virtual con una distro de linux instalada.
+o una maquina virtual con una distro de linux instalada.
 
 se debe instalar docker y kubectl previamente antes de ejecutar los scripts sino fallara
 
 La cli de aws en caso de no tenerla el script requirements.sh lo instalara por usted
 
-Tambien esta aplicacion es solo una prueba de la potencia de los microservicios pero no cuenta con redundancia que tendria una aplicacion en produccion
-
-# Integrantes
-
-Guillermo Ferradas (270809)
-
-Mauricio Campodonico (212382)
+Este repositorio es un repositorio meramente instructivo y educativo por lo tanto los componentes de la aplicacion no son redundantes en caso de querer modificar y agregar redundancia a los componentes se debe investigar previamente como podemos dar redundancia 
 
 ## Este repositorio contiene las siguentes carpetas:
 
@@ -84,4 +81,4 @@ en la cual podra interactuar y generar compras de prueba:
 
 ![compra](.img/compra.png)
 
-\_ Y listo ya tendrías una aplicación corriendo con microservicios corriendo en Kubernetes!!!!!!!!!!!!!!\_
+Y listo ya tendrías una aplicación corriendo con microservicios corriendo en Kubernetes!!!
