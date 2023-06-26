@@ -66,11 +66,16 @@ chmod +x infra.sh
 
 - ejecutar requirements.sh
 
+Para ejecutar el script se hace de la siguiente manera:
+```
+./requirements.sh
+```
  Este paso puede demorar ya que el script construye y pushea imagenes a un repositorio publico en docker hub.
 
  ```
 find $HOME/Obli-ISC/src -maxdepth 2 -type d -exec sh -c 'cd "{}" && docker build -t "gferradas/$(basename {}):v2" . && docker push "gferradas/$(basename {}):v2"' \;
 ```
+
 Este pedazo de codigo es el encargado de recorrer la carpeta src en donde se encuentran los archivos
 necesarios para construir las imagenes y pushearlas
 
@@ -96,6 +101,16 @@ Podras verificar los pods con el comando
 ```
 kubectl get pods
 ```
+vera que tendra 10 pods corriendo que son los 10 microservicios 
+
+tambien podra ver los service que se crean mediante los manifiestos con el comando
+
+```
+kubectl get svc all
+```
+y podra verificar que aparece la url que se muestra tambien aparece ahi ya que de ahi se saca 
+
+
 # Posibles mejoras
 
 En esta seccion se ven mejoras que se le puede hacer a distintos componentes para obtener redundancia y alta disponibilidad para la aplicacion.
