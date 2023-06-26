@@ -21,7 +21,7 @@ resource "aws_eks_node_group" "workers" {
   subnet_ids = [aws_subnet.subnet-1.id,aws_subnet.subnet-2.id]
 
   scaling_config {
-    desired_size = 3
+    desired_size = 4
     max_size = 6
     min_size = 2
   }

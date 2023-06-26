@@ -14,11 +14,13 @@ Este proyecto solo funcionara en sistemas operativos linux.
 Por lo tanto si es usuario de windows se recomienda el uso de WSL 
 o una maquina virtual con una distro de linux instalada.
 
-se debe instalar docker y kubectl previamente antes de ejecutar los scripts sino fallara
+EL equipo debe tener instalado docker y kubectl previamente antes de ejecutar los scripts sino fallara
 
 La cli de aws en caso de no tenerla el script requirements.sh lo instalara por usted
 
-Este repositorio es un repositorio meramente instructivo y educativo por lo tanto los componentes de la aplicacion no son redundantes en caso de querer modificar y agregar redundancia a los componentes se debe investigar previamente como podemos dar redundancia 
+Este repositorio es un repositorio meramente instructivo y educativo por lo tanto los componentes de la aplicacion no son redundantes en caso de querer modificar y agregar redundancia a los componentes se debe investigar previamente como podemos dar redundancia.
+
+Mas adelante se habla de posibles mejoras que se puede hacer para dar redundancia a la aplicacion.
 
 ## Este repositorio contiene las siguentes carpetas:
 
@@ -35,10 +37,10 @@ Este repositorio es un repositorio meramente instructivo y educativo por lo tant
 
 Este sera el resultado que se logra cuando se usa el script infra.sh
 
+
+![dependencias](.img/graph.svg)
+
 Este es el arbol de dependencias de los archivos de terraform
-
-![dependencias](Terraform/graph.svg)
-
 
 # Como uso el repositorio?
 
@@ -54,7 +56,13 @@ Este script se asegurara que el ambiente este correctamente seteado para levanta
 
 - Clonar el repositorio mediante git clone 
 
-- en caso de no tener permisos de ejecucion dar permisos mediante chmod
+- en caso de que los archivos requirements.sh y infra.sh no tengan permisos de ejecucion darselos mediante el comando chmod
+
+```
+chmod +x requirements.sh
+
+chmod +x infra.sh
+```
 
 - ejecutar requirements.sh
 
@@ -77,8 +85,23 @@ Una vez tengas la url deberia ver la siguiente pagina:
 
 ![tienda](.img/image.png)
 
+Esto puede demorar ya que el elastic load balancer que genera el manifiesto del frontend demora un poco en quedar activo
+
 en la cual podra interactuar y generar compras de prueba:
 
 ![compra](.img/compra.png)
 
-Y listo ya tendrías una aplicación corriendo con microservicios corriendo en Kubernetes!!!
+Podras verificar los pods con el comando
+
+```
+kubectl get pods
+```
+# Posibles mejoras
+
+En esta seccion se ven mejoras que se le puede hacer a distintos componentes para obtener redundancia y alta disponibilidad para la aplicacion.
+
+| Componente      | Mejora                                                                                                                                                                                                                                                                                                                                                                                                        |
+|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Redis           | Para mejorar redis hay 2 opciones sacarlo de kubernetes para sacarlo se puede usar el servicio de aws ElastiCache. Si optamos por esta parte se debe modificar el manifiesto del cart, para que en vez de apuntar al nombre de servicio de redis apunte a la url que te da aws de elasticache.                                                                                                                |
+| Pods (no redis) | Aunque ya hay redundancia en los pods por los livenessProbe y readinessProbe que el pod al ser detectado no sano sera cambiado por otro pod aunque esto causara un poco de indisponibilidad. Para esto se pueden agregar mas replicas mediante un replicaset para que genere mas pods por microservicio para a la hora de que un pod sea dado de baja por defectuoso no haya una ventana de indisponibilidad  |
+| Manifiestos     | Para mejorar los manifiestos en terminos de automatizacion y que agarren la imagen y tag de forma  automatizada es generar un templatefile de terraform para lograr lo comentado anteriormente.                                                                                                                                                                                                               |
