@@ -115,6 +115,12 @@ necesarios para construir las imagenes y pushearlas
     - se haran los deployments 1 a 1 dentro de la carpeta manifests
     - aparecera la url a la aplicacion una vez todo este desplegado donde puede acceder al frontend
 
+Para ejecutar el script infra.sh es lo mismo que con el requirements.sh
+
+```
+./infra.sh
+```
+
 Una vez tengas la url deberia ver la siguiente pagina:
 
 ![tienda](.img/image.png)
