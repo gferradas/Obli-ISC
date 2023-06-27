@@ -27,7 +27,7 @@ en caso de querer acceder por ssh a los workers se debera cambiar el nombre de l
     ec2_ssh_key = "vockey"
   }
   ```
- en las linea 17 se encuentra el mismo
+en las linea 17 se encuentra el mismo
 Mas adelante se habla de posibles mejoras que se puede hacer para dar redundancia a la aplicacion.
 
 ## Este repositorio contiene las siguentes carpetas:
@@ -49,6 +49,27 @@ Este sera el resultado que se logra cuando se usa el script infra.sh
 ![dependencias](.img/graph.svg)
 
 Este es el arbol de dependencias de los archivos de terraform
+
+para cumplir con el arbol de dependencias usted debe crear un archivo llamado variables.tfvars donde pondra el valor de las variables que se definen.
+
+Este seria un ejemplo:
+```
+touch variables.tfvars
+
+vim/vi/nano variables.tfvars
+
+cluster_name = "obli-cluster"
+worker-type = "t3.large"
+cidr-subnet-1 = "172.0.0.0/24"
+cidr-vpc = "172.0.0.0/16"
+cidr-subnet-2 = "172.0.1.0/24"
+ssh = 22
+workers-name = "obli-workers"
+ami = "AL2_x86_64"
+cidr-global = "0.0.0.0/0"
+
+```
+puede cambiar los valores a su gusto experimentando con distintos valores.
 
 # Como uso el repositorio?
 
