@@ -73,10 +73,9 @@ puede cambiar los valores a su gusto experimentando con distintos valores.
 
 # Como uso el repositorio?
 
-Se debe primero ejecutar el script requirements.sh
+Primero se debe instalar kubectl y docker engine antes de ejecutar y clonar algo.
 
-Este script se asegurara que el ambiente este correctamente seteado para levantar la aplicacion
-(ejecutar el script con permisos de sudo o ser root)
+En caso de no saber como abajo estan las referencias de como instalar cada 1:
 
 - Instalar kubectl y docker verificar su instalacion
    En caso de no saber como instalar verificar aqui:
@@ -84,6 +83,9 @@ Este script se asegurara que el ambiente este correctamente seteado para levanta
    - https://kubernetes.io/docs/tasks/tools/
 
 - Clonar el repositorio mediante git clone 
+```
+git clone git@github.com:gferradas/Obli-ISC.git
+```
 
 - en caso de que los archivos requirements.sh y infra.sh no tengan permisos de ejecucion darselos mediante el comando chmod
 
@@ -99,6 +101,8 @@ Para ejecutar el script se hace de la siguiente manera:
 ```
 ./requirements.sh
 ```
+ Este script es el encargado de setear el ambiente si su entorno no tiene la cli de aws el script lo instalara por usted y solamente tendra que configurar los access keys
+ 
  Este paso puede demorar ya que el script construye y pushea imagenes a un repositorio publico en docker hub.
 
  ```
