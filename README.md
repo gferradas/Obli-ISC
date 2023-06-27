@@ -20,6 +20,14 @@ La cli de aws en caso de no tenerla el script requirements.sh lo instalara por u
 
 Este repositorio es un repositorio meramente instructivo y educativo por lo tanto los componentes de la aplicacion no son redundantes en caso de querer modificar y agregar redundancia a los componentes se debe investigar previamente como podemos dar redundancia.
 
+en caso de querer acceder por ssh a los workers se debera cambiar el nombre de la key "vockey" por el que usted tenga en el codigo de terrafom cluster.tf 
+
+```
+ remote_access {
+    ec2_ssh_key = "vockey"
+  }
+  ```
+ en las linea 17 se encuentra el mismo
 Mas adelante se habla de posibles mejoras que se puede hacer para dar redundancia a la aplicacion.
 
 ## Este repositorio contiene las siguentes carpetas:
